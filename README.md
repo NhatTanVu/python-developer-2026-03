@@ -29,10 +29,8 @@ posts that are provided:
 
 ## Environment
 
-The application uses Django 6.x, so one of
-[Python 3.12, 3.13, or 3.14](https://docs.djangoproject.com/en/dev/faq/install/#what-python-version-can-i-use-with-django) is required.
-If you are using macOS,
-[installing Python via brew](https://formulae.brew.sh/formula/python) is recommended.
+The application uses Django 6.x and Python 3.14. The Python version is managed
+using uv.
 
 ## Coding Standard
 
