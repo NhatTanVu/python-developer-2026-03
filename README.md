@@ -108,8 +108,8 @@ We will evaluate your anonymized implementation based on the following criteria:
 
 Please use Python type hints for your code. [Ruff](https://docs.astral.sh/ruff/)
 is configured in the project and may be used to format and check your code.
-Django templates can be checked and formatted using djLint. Both tools can
-be called using Makefile targets:
+Django templates can be checked and formatted using
+[djLint](https://djlint.com/). Both tools can be called using Makefile targets:
 
 ```sh
 make lint-check
