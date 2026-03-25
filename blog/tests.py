@@ -110,12 +110,15 @@ class PostDetailViewTests(TestCase):
         self.assertTemplateUsed(response, "blog/post_detail.html")
 
     def test_post_detail_returns_404_for_missing_post(self):
+        # Arrange + Act
         import uuid
         response = self.client.get(reverse("post_detail", args=[uuid.uuid4()]))
+        # Assert
         self.assertEqual(response.status_code, 404)
 
     def test_post_detail_renders_markdown_to_html(self):
+        # Act
         response = self.client.get(reverse("post_detail", args=[self.post.id]))
-
+        # Assert
         self.assertContains(response, "<h1>Hello</h1>", html=True)
         self.assertContains(response, "<strong>bold</strong>", html=True)
