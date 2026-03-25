@@ -1,4 +1,6 @@
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, render
+
 from blog.models import Post
 
 
@@ -20,3 +22,12 @@ def index(request: HttpRequest) -> HttpResponse:
 
 def welcome(request: HttpRequest) -> HttpResponse:
     return render(request, "blog/welcome.html")
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    return render(
+        request,
+        "blog/post_detail.html",
+        {"post": post},
+    )
