@@ -1,7 +1,20 @@
 {% extends "blog/base.html" %}
 {% block title %}
-  Posts
+Posts
 {% endblock title %}
 {% block content %}
-  <p>SHOW ALL POSTS HERE</p>
+<h1>Posts</h1>
+
+<div class="post-grid">
+  {% for post in posts %}
+  <a href="{% url 'post_detail' post.id %}" class="post-card-link">
+    <article class="post-card">
+      <h2 class="post-title">{{ post.title }}</h2>
+      <p class="post-author">By {{ post.author.full_name }}</p>
+    </article>
+  </a>
+  {% empty %}
+  <p>No posts found.</p>
+  {% endfor %}
+</div>
 {% endblock content %}

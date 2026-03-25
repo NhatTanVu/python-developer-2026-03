@@ -42,3 +42,41 @@ main {
   max-width: 32rem;
   padding: 2rem 1rem;
 }
+
+/* Grid layout */
+.post-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+// /* Card styling */
+.post-card {
+  background: #ffffff;
+  border-radius: 16px;
+  /* rounded card */
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 300px;
+}
+
+/* Hover effect */
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Title */
+.post-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+/* Author */
+.post-author {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
