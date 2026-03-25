@@ -10,9 +10,9 @@ from blog.models import Author, Post  # noqa: F401
 
 
 class WelcomeViewTests(TestCase):
-    def test_default_page(self):
+    def test_default_page_returns_200_and_uses_template(self):
         # Act
-        response = self.client.get("/")
+        response = self.client.get(reverse("welcome"))
         # Assert
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/welcome.html")
@@ -21,7 +21,7 @@ class WelcomeViewTests(TestCase):
 class IndexViewTests(TestCase):
     def setUp(self):
         # Arrange
-        Post.objects.all().delete()  # Delete all 10 seeded posts
+        Post.objects.all().delete()  # Delete all seeded posts
         self.author = Author.objects.create(
             full_name="Test Author",
             created_at=timezone.now(),
@@ -30,7 +30,7 @@ class IndexViewTests(TestCase):
 
     def test_index_returns_200_and_uses_template(self):
         # Act
-        response = self.client.get("/posts/")
+        response = self.client.get(reverse("index"))
         # Assert
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "blog/index.html")
@@ -54,7 +54,7 @@ class IndexViewTests(TestCase):
             published_at=None,
         )
         # Act
-        response = self.client.get("/posts/")
+        response = self.client.get(reverse("index"))
         posts = list(response.context["posts"])
         # Assert
         self.assertIn(published_post, posts)
@@ -79,7 +79,7 @@ class IndexViewTests(TestCase):
             published_at=timezone.now(),
         )
         # Act
-        response = self.client.get("/posts/")
+        response = self.client.get(reverse("index"))
         posts = list(response.context["posts"])
         # Assert
         self.assertEqual(posts, [newer, older])
@@ -102,7 +102,7 @@ class PostDetailViewTests(TestCase):
             published_at=timezone.now(),
         )
 
-    def test_index_returns_200_and_uses_template(self):
+    def test_post_detail_returns_200_and_uses_template(self):
         # Act
         response = self.client.get(reverse("post_detail", args=[self.post.id]))
         # Assert
